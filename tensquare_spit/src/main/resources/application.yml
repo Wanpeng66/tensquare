@@ -5,9 +5,9 @@ spring:
     name: tensquare-spit #指定服务名
   data:
     mongodb:
-      username: spit
+      username: wp
       password: 123456
-      uri: mongodb://106.15.233.201:27020/spitdb
+      uri: mongodb://wp:123456@106.15.233.201:27020/spitdb
   redis:
     client-name: ${spring.application.name}
     sentinel:

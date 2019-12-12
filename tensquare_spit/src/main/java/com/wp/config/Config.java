@@ -1,11 +1,17 @@
 package com.wp.config;
 
+import com.mongodb.AuthenticationMechanism;
+import com.mongodb.MongoCredential;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.mongo.MongoProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,9 +24,10 @@ import org.springframework.data.redis.core.RedisTemplate;
  */
 @Configuration
 public class Config {
-@Autowired
-RedisConnectionFactory redisConnectionFactory;
-
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
+    @Autowired
+    MongoProperties mongoProperties;
 
     @Bean
     public RedisTemplate<String,String> redisTemplate( ){
@@ -29,6 +36,16 @@ RedisConnectionFactory redisConnectionFactory;
         return redisTemplate;
     }
 
+    //@Bean
+    public MongoClientFactoryBean mongoClientFactoryBean() {
+        MongoClientFactoryBean mongo = new MongoClientFactoryBean();
+        mongo.setHost( mongoProperties.getHost() );
+        mongo.setPort( mongoProperties.getPort() );
+        mongo.setCredentials( new MongoCredential[]{
+                MongoCredential.createScramSha1Credential( mongoProperties.getUsername(),mongoProperties.getDatabase(),mongoProperties.getPassword())
+        } );
+        return mongo;
+    }
     @Bean
     public MongoTemplate mongoTemplate( MongoDbFactory mongoDbFactory ){
         MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
