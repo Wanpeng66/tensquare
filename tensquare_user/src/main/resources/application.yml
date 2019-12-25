@@ -14,7 +14,7 @@ spring:
   redis:
     sentinel:
       client-name: ${spring.application.name}
-      master: mymater
+      master: mymaster
       nodes:
         - 106.15.233.201:26379
         - 106.15.233.201:26380

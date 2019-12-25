@@ -26,7 +26,7 @@ public class UserController {
 	private UserService userService;
 
 
-	@PostMapping("/sendSms/{tele}")
+	@GetMapping("/sendSms/{tele}")
 	public Result sendSms(@PathVariable String tele){
 		userService.sendSms(tele);
 		return new Result(true,StatusCode.OK.getStatus(),"发送成功",null);

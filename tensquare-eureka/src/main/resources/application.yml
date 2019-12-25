@@ -1,0 +1,10 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: tensquare-eureka
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false

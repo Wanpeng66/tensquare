@@ -19,3 +19,10 @@ spring:
         - 106.15.233.201:26380
         - 106.15.233.201:26381
       master: mymaster
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9000/eureka/
