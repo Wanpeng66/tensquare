@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: wp
@@ -26,8 +27,9 @@ public class LabelController {
     LabelService labelService;
 
     @GetMapping
-    public Result getAll(){
+    public Result getAll() throws InterruptedException {
         List<Label> all = labelService.findAll();
+        TimeUnit.SECONDS.sleep( 4 );
         return new Result(true, StatusCode.OK.getStatus(),"查询成功...",all );
     }
 

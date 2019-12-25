@@ -1,6 +1,7 @@
 package com.wp.controller;
 import java.util.Map;
 
+import com.wp.FeignClients.BaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +29,9 @@ public class GatheringController {
 
 	@Autowired
 	private GatheringService gatheringService;
+
+	@Autowired
+	BaseClient baseClient;
 	
 	
 	/**
@@ -36,7 +40,8 @@ public class GatheringController {
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,StatusCode.OK.getStatus(),"查询成功",gatheringService.findAll("11"));
+		return baseClient.getAll();
+		//return new Result(true,StatusCode.OK.getStatus(),"查询成功",gatheringService.findAll("11"));
 	}
 	
 	/**

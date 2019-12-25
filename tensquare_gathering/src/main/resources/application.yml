@@ -26,3 +26,26 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:9000/eureka/
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: true
+  client:
+    config:
+      tensquare-base:
+        connectTimeout: 2000
+        readTimeout: 3000
+#tensquare-base:
+  #ribbon:
+    #配置单个节点重试最大值
+    #MaxAutoRetries: 1
+    #配置更换节点数最大值
+    #MaxAutoRetriesNextServer: 1
+hystrix:
+  command:
+    defalut:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
