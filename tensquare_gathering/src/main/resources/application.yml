@@ -3,6 +3,10 @@ server:
 spring: 
   application:  
     name: tensquare_gathering #指定服务名
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
   datasource:  
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://106.15.233.201:3306/tensquare_gathering?characterEncoding=UTF8
@@ -28,6 +32,8 @@ eureka:
       defaultZone: http://127.0.0.1:9000/eureka/
 feign:
   hystrix:
+    enabled: false
+  sentinel:
     enabled: true
   httpclient:
     enabled: true
@@ -42,10 +48,11 @@ feign:
     #MaxAutoRetries: 1
     #配置更换节点数最大值
     #MaxAutoRetriesNextServer: 1
-hystrix:
-  command:
-    defalut:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 2000
+#hystrix:
+  #command:
+    #defalut:
+      #execution:
+        #isolation:
+          #thread:
+            #timeoutInMilliseconds: 2000
+

@@ -1,6 +1,7 @@
 package com.wp.controller;
 import java.util.Map;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.wp.FeignClients.BaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

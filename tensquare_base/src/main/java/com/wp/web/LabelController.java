@@ -29,7 +29,7 @@ public class LabelController {
     @GetMapping
     public Result getAll() throws InterruptedException {
         List<Label> all = labelService.findAll();
-        TimeUnit.SECONDS.sleep( 4 );
+        //TimeUnit.SECONDS.sleep( 4 );
         return new Result(true, StatusCode.OK.getStatus(),"查询成功...",all );
     }
 

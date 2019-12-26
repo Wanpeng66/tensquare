@@ -1,5 +1,6 @@
 package com.wp.FeignClients;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.wp.entity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
